@@ -74,5 +74,4 @@ foreach ($user as $tableName => $table) {
     $query .= implode(', ', $table);
     $query .= ');' . PHP_EOL;
 }
-var_dump($query);
 $pdo->exec($query);

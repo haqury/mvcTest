@@ -26,7 +26,6 @@ var Controller_Home = {
             var $name = this.name;
             data[$name] = $(this).val();
         });
-        console.log(data);
         collback = function (result) {
             console.log(result);
             $('body').html(result);
@@ -50,7 +49,6 @@ var Controller_Home = {
             var $name = this.name;
             data[$name] = $(this).val();
         });
-        console.log(data);
         collback = function (result) {
             $('body').html(result);
         };
