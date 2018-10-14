@@ -6,9 +6,9 @@
  * Time: 14:53
  */
 
-include_once 'Service/Pdo.php';
+include_once 'Service/ServicePdo.php';
 
-$pdo = new ServicePdo();
+$pdo = new \Service\ServicePdo();
 $query = "
     CREATE TABLE `user`(
         `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',

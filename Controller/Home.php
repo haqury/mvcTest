@@ -7,7 +7,9 @@
  * Time: 14:59
  */
 
-class Index
+namespace Controller\Home;
+
+class Home
 {
     /**
      * Экшен главной страницы

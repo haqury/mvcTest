@@ -6,7 +6,7 @@
  * Time: 15:22
  */
 
-
+namespace Service;
 
 class ServicePdo extends PDO
 {
