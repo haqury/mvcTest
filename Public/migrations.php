@@ -42,11 +42,18 @@ $pdo->exec($query);
 
 $query = "
     CREATE TABLE `user_purse__link`(
-        `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',
-        `User__id` VARCHAR(255) NOT NULL COMMENT 'user id' FOREIGN KEY REFERENCES user(id),
-        `Purse__id` VARCHAR(255) NOT NULL COMMENT 'purse id' FOREIGN KEY REFERENCES purse(id),
-        PRIMARY KEY (`id`)
-    ) ENGINE = InnoDB;
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `User__id` INT NOT NULL COMMENT 'user id',
+  `Purse__id` INT NOT NULL COMMENT 'purse id',
+  PRIMARY KEY (`id`),
+  INDEX (User__id, Purse__id),
+  FOREIGN KEY (User__id)
+  REFERENCES user(id)
+    ON UPDATE CASCADE,
+  FOREIGN KEY (Purse__id)
+  REFERENCES purse(id)
+    ON UPDATE CASCADE
+) ENGINE = InnoDB;
 ";
 $pdo->exec($query);
 
