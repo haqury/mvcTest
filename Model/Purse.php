@@ -6,6 +6,7 @@
  * Time: 15:15
  */
 
+namespace Model;
 require_once 'Model.php';
 
 class Purse extends Model
@@ -72,7 +73,7 @@ class Purse extends Model
      */
     public function checkBalance()
     {
-        $balance = $this->getMoney() - $_POST['money'];
+        $balance = intval($this->getMoney()) - intval($_POST['money']);
         return ($balance >= 0) ? $balance : false;
     }
 

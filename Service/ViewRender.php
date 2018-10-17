@@ -1,4 +1,6 @@
 <?php
+
+namespace Service;
 /**
  * Created by PhpStorm.
  * User: haqury

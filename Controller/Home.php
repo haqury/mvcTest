@@ -7,7 +7,11 @@
  * Time: 14:59
  */
 
-namespace Controller\Home;
+namespace Controller;
+
+use Model\Model;
+use Model\User;
+use Service\ViewRender;
 
 class Home
 {
@@ -16,15 +20,15 @@ class Home
      */
     public function index()
     {
-        $user = new User;
-        if (!empty($_COOKIE['id'])) {
-            $user->byId($_COOKIE['id']);
+        $user = new User();
+        if (!empty($_COOKIE['PHPSESSID'])) {
+            $user->loadById($_COOKIE['PHPSESSID']);
         }
         if (!$user->authorizationToCookie() && !$user->authorization()) {
             $this->authorization();
             return;
         }
-        $this->setTemplate('index.php');
+        $this->setTemplate('home.php');
         $transactionResult = $user->getPurse()->buy();
         $this->output(
             [

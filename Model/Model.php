@@ -6,7 +6,10 @@
  * Time: 15:22
  */
 
+namespace Model;
 
+use Service\Query;
+use Service\ServicePdo;
 
 class Model
 {
@@ -26,7 +29,7 @@ class Model
     /**
      * @param $id
      */
-    public function byId ($id)
+    public function loadById ($id)
     {
         $this->getModelData('id', $id);
     }
@@ -58,11 +61,11 @@ class Model
             $pdo = new ServicePdo();
             $pdo->exec($query->result);
             if (empty($result[0])) {
-                throw new Exception($e = 'not model, with this attribute');
+                throw new \Exception($e = 'not model, with this attribute');
             }
             $this->setAttributes($result[0]);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return false;
         }
         return true;
@@ -98,13 +101,16 @@ class Model
                 ->where($attributeName, $attribute);
             $pdo = new ServicePdo();
             $result = $pdo->query($query->result);
+            if (!$result) {
+                throw new \Exception($e = 'not result');
+            }
             $result = $result->fetchAll();
             if (empty($result[0])) {
-                throw new Exception($e = 'not model, with this attribute');
+                throw new \Exception($e = 'not model, with this attribute');
             }
             $this->setAttributes($result[0]);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return false;
         }
         return $this;

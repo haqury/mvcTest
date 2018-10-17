@@ -1,0 +1,15 @@
+{
+    "autoload":{
+        "classmap":[
+            "app"
+        ]
+    },
+    "name": "haqury/mvc-test",
+    "authors": [
+        {
+            "name": "haqury",
+            "email": "irvin.90@mail.ru"
+        }
+    ],
+    "require": {}
+}

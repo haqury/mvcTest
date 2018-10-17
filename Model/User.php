@@ -6,6 +6,7 @@
  * Time: 15:00
  */
 
+namespace Model;
 
 class User extends Model
 {

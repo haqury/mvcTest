@@ -8,7 +8,7 @@
 
 namespace Service;
 
-class ServicePdo extends PDO
+class ServicePdo extends \PDO
 {
     /**
      * подключение к БД

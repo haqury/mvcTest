@@ -6,6 +6,7 @@
  * Time: 21:31
  */
 
+namespace Service;
 /**
  * TODO костыли есть, знаю но YAGNI
  * простенький queryBuilder, строим запросы
@@ -39,6 +40,7 @@ class Query
      */
     public function from($table)
     {
+        $table = str_replace('model\\', '', $table);
         $this->result .= 'FROM ' . '`' . $table . '` ';
         return $this;
     }
@@ -62,6 +64,7 @@ class Query
      */
     public function update($table)
     {
+        $table = str_replace('model\\', '', $table);
         $this->result .= 'UPDATE ' . '`' . $table . '` SET ';
         return $this;
     }

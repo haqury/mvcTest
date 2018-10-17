@@ -6,6 +6,7 @@
  * Time: 19:53
  */
 
+namespace Model;
 require_once 'Model.php';
 
 class User_Purse__Link extends Model
@@ -31,7 +32,7 @@ class User_Purse__Link extends Model
     {
         $this->getModelData('User__id', $id);
         $purse = new Purse();
-        $purse->byId($this->getPurseId());
+        $purse->loadById($this->getPurseId());
         return $purse;
     }
 }

@@ -6,9 +6,15 @@
  * Time: 14:53
  */
 
-include_once 'Service/ServicePdo.php';
+spl_autoload_register(function ($class_name) {
+    $class_name = __DIR__ . '/../'
+        . str_replace('\\', '/', $class_name);
+    require_once $class_name . '.php';
+});
 
-$pdo = new \Service\ServicePdo();
+use Service\ServicePdo;
+
+$pdo = new ServicePdo();
 $query = "
     CREATE TABLE `user`(
         `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -16,7 +22,7 @@ $query = "
         `password` VARCHAR(255) NOT NULL COMMENT 'password',
         `PHPSESSID` VARCHAR(255) NOT NULL COMMENT 'PHPSESSID',
         PRIMARY KEY (`id`)
-    );
+    ) ENGINE = InnoDB;
 ";
 $pdo->exec($query);
 $query = "
@@ -25,7 +31,7 @@ $query = "
         `money` INT NOT NULL COMMENT 'средства на счете',
         `transactionCode` INT NOT NULL COMMENT 'код для подтверждения транзакции',
         PRIMARY KEY (`id`)
-    );
+    ) ENGINE = InnoDB;
 ";
 try {
     $pdo = new ServicePdo();
@@ -37,10 +43,10 @@ $pdo->exec($query);
 $query = "
     CREATE TABLE `user_purse__link`(
         `id` INT NOT NULL AUTO_INCREMENT COMMENT 'id',
-        `User__id` VARCHAR(255) NOT NULL COMMENT 'user id',
-        `Purse__id` VARCHAR(255) NOT NULL COMMENT 'purse id',
+        `User__id` VARCHAR(255) NOT NULL COMMENT 'user id' FOREIGN KEY REFERENCES user(id),
+        `Purse__id` VARCHAR(255) NOT NULL COMMENT 'purse id' FOREIGN KEY REFERENCES purse(id),
         PRIMARY KEY (`id`)
-    );
+    ) ENGINE = InnoDB;
 ";
 $pdo->exec($query);
 
